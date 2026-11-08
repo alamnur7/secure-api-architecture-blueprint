@@ -22,7 +22,7 @@ A comprehensive architectural blueprint showcasing secure software development p
 ```
 ## System Architecture and Authentication Flow
 
-mermaid
+```mermaid
 sequenceDiagram
     autonumber
     actor User as Mobile App (Flutter)
@@ -39,7 +39,7 @@ sequenceDiagram
     API->>DB: Parameterized Query Execution
     DB-->>API: Return Encrypted Data Result
     API-->>User: 200 OK Response (Sanitized Payload)
----
+```
 
 ## 🔒 Security Best Practices Implemented
 
