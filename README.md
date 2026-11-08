@@ -20,9 +20,26 @@ A comprehensive architectural blueprint showcasing secure software development p
 
 [ PostgreSQL Database (Hardened VPS) ]
 ```
+## System Architecture and Authentication Flow
 
+mermaid
+sequenceDiagram
+    autonumber
+    actor User as Mobile App (Flutter)
+    participant API as Spring Boot API Gateway
+    participant DB as Hardened PostgreSQL
+
+
+    User->>API: POST /api/v1/auth/login (Credentials)
+    API->>API: Validate Input DTO & Verify Credentials
+    API-->>User: Return Short-Lived Access Token (JWT)
+    
+    User->>API: GET /api/v1/resource (Authorization: Bearer JWT)
+    API->>API: Validate Token Signature & RBAC Permissions
+    API->>DB: Parameterized Query Execution
+    DB-->>API: Return Encrypted Data Result
+    API-->>User: 200 OK Response (Sanitized Payload)
 ---
-
 
 ## 🔒 Security Best Practices Implemented
 
