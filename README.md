@@ -77,7 +77,7 @@ This repository serves as a reference implementation model for designing secure 
 ## Automated DevSecOps Pipeline
 
 
-![AppSec CI/CD Security Pipeline](https://github.com/alamnur7/secure-api-architecture-blueprint/actions/workflows/appsec-pipeline.yaml)
+![AppSec CI/CD Security Pipeline](https://github.com/alamnur7/secure-api-architecture-blueprint/actions/workflows/appsec-pipeline.yaml/badge.svg)
 
 
 This repository enforces automated security checks on every push and pull_request using **GitHub Actions**:
