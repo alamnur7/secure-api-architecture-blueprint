@@ -1,0 +1,46 @@
+name: AppSec CI/CD Security Pipeline
+
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+permissions:
+  contents: read
+  security-events: write
+
+
+jobs:
+  # Job 1: Static Application Security Testing (SAST) with Semgrep
+  sast-semgrep-scan:
+    name: SAST Code Scan (Semgrep)
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+
+      - name: Run Semgrep Security Audit
+        run: semgrep scan --config=auto --error
+
+
+  # Job 2: Secret Detection Scanning with Gitleaks
+  secret-scanning:
+    name: Secret Detection (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+
+      - name: Run Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

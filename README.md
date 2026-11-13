@@ -69,11 +69,30 @@ sequenceDiagram
 - **Privilege Separation:** Configured application services to run under a dedicated non-root system user account.
 
 
----
-
-
-## 📑 Remediation & Compliance Reference
+## Remediation & Compliance Reference
 This repository serves as a reference implementation model for designing secure backend APIs and developing effective remediation guidelines for enterprise penetration testing reports.
 
 
 ---
+## Automated DevSecOps Pipeline
+
+
+![AppSec CI/CD Security Pipeline](https://github.com/alamnur7/secure-api-architecture-blueprint/actions/workflows/appsec-pipeline.yml/badge.svg)
+
+
+This repository enforces automated security checks on every push and pull_request using **GitHub Actions**:
+
+
+```mermaid
+flowchart LR
+    A[Git Push / Pull Request] --> B{GitHub Actions CI}
+    B --> C[SAST: Semgrep Auto Audit]
+    B --> D[Secret Scan: Gitleaks]
+    C --> E{Vulnerabilities Found?}
+    D --> E
+    E -- Yes --> F[❌ Block Merge & Alert]
+    E -- No --> G[✅ Security Check Passed]
+```
+
+**SAST (Semgrep):** Scans source code for OWASP Top 10 anti-patterns, injection vectors, and insecure configurations.
+**Secret Scanning (Gitleaks):** Audits git commit history to prevent accidental exposure of API keys, tokens, and credentials.
