@@ -1,3 +1,1 @@
------BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA02...
------END RSA PRIVATE KEY-----
+slack_token = "xoxb-111122223333-abcdefghijklmnop"
