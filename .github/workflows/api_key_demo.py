@@ -1,1 +1,0 @@
-slack_token = "xoxb-111122223333-abcdefghijklmnop"
